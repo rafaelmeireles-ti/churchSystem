@@ -1,0 +1,11 @@
+<configuration>
+    <appender name="saidaPadrao" class="ch.qos.logback.core.ConsoleAppender">
+     <encoder>
+         <pattern>%date %highlight(%level) %cyan(%logger) -  %green(%msg%n)</pattern>
+     </encoder>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref ="saidaPadrao"></appender-ref>
+    </root>
+</configuration>
