@@ -1,0 +1,47 @@
+<!-- lista-pessoas.component.html -->
+ <h2>Cadastro de Membros</h2> 
+<p-table 
+
+[value]="pessoas" 
+[tableStyle]="{ 'min-width': '50rem' }"
+>
+
+
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Código
+            </th>
+            <th field="nome">Nome
+                <p-columnFilter 
+                field="nome" matchMode="in" display="menu" 
+                [showMatchModes]="false" [showOperator]="false" [showAddButton]="false" >
+                <ng-template pTemplate="header">
+                </ng-template>
+                <ng-template pTemplate="filter" let-value let-filter="filterCallback">
+                    <p-multiSelect [ngModel]="value" [options]="filterOptions" placeholder="Any" (onChange)="filter($event.value )" optionLabel="nome">
+                        <ng-template let-option pTemplate="item">
+                            <div class="inline-block vertical-align-middle">
+                                <span class="ml-1 mt-1">{{ option.nome }}</span>
+                            </div>
+                        </ng-template>
+                    </p-multiSelect>
+                </ng-template>
+            </p-columnFilter>
+
+            </th>
+            <th>Situação</th>
+            <th>Data de Cadastro</th>
+            <th>Ações</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-pessoas>
+        <tr>
+            <td>{{ pessoas.idPessoa }}</td>
+            <td field="nome"> {{ pessoas.nome }}</td>
+            <td>{{ pessoas.situacao | situacao}}</td>
+            <td>{{ pessoas.dhSituacao  | date : 'dd/MM/yyyy' }} </td>
+            <td><i class="pi pi-eye" style="font-size: 1rem" (click)="onVisualizaDados(pessoas.idPessoa)"></i></td>
+        </tr>
+    </ng-template>
+</p-table>
+  
